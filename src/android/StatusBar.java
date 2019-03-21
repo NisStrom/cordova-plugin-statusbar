@@ -148,6 +148,8 @@ public class StatusBar extends CordovaPlugin {
 
         if ("overlaysWebView".equals(action)) {
             if (Build.VERSION.SDK_INT >= 21) {
+                window.clearFlags(0x04000000); // SDK 19: WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                window.addFlags(0x80000000); // SDK 21: WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 this.cordova.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
